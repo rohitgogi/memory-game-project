@@ -1,75 +1,91 @@
 .App {
-  max-width: 860px;
-  margin: 40px auto;
+  width: 85%;
   display: flex;
-    width: 1475px;
-    padding: 144px 64px;
-    justify-content: center;
-    align-items: center;
-    gap: 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  padding: 48px;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
 }
 
 .App h1 {
-  color: #FFF;
-    font-family: Inter;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  color: #fff;
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.title{
-  width: 203px;
-  color: #FFF;
-    font-family: Inter;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: normal;
-    text-align: left;
+.title {
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  align-self: stretch;
 }
-
 
 button {
   display: flex;
-    padding: 9px;
-    justify-content: center;
-    align-items: center;
-    gap: 9px;
-    border-radius: 112.5px;
-      border: 1.125px solid #555;
-      background: #2D2D2D;
-      color: #FFF;
-        text-align: center;
-        font-family: Inter;
-        font-size: 13.5px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        letter-spacing: 2.16px;
-        text-transform: uppercase;
-        cursor: pointer;
+  padding: 9px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  border-radius: 112.5px;
+  border: 1.125px solid #555;
+  background: #2d2d2d;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 13.5px;
+  font-weight: 300;
+  letter-spacing: 2.16px;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .left-container {
   display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex: 1 0 0;
-    align-self: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.turns {
+  color: #FFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 0.64px;
+  text-transform: uppercase;
+  margin: 0px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 button:hover {
-  background: #c23866;
-  color: #fff;
+  border-radius: 100px;
+  border: 1px solid rgba(138, 178, 255, 0.73);
+  background: rgba(78, 113, 202, 0.32);
+  box-shadow: 0px 0px 13.8px 0px rgba(138, 178, 255, 0.16);
 }
 
 .card-grid {
-  margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
+  max-width: 60%;
 }
 
 .front {
