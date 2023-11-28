@@ -1,10 +1,10 @@
 .App {
-  width: 85%;
+  width: 50em;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 48px;
-  padding: 48px;
+  margin: 64px;
 }
 
 .top-container {
@@ -12,15 +12,17 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
+  align-self: stretch;
 }
 
 .App h1 {
   color: #fff;
   font-family: Inter;
-  font-size: 36px;
+  font-size: 1.5em;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin: 0px;
 }
 
 .title {
@@ -30,6 +32,8 @@
   font-weight: 400;
   line-height: normal;
   align-self: stretch;
+  text-wrap: balance;
+  margin-bottom: 0px;
 }
 
 button {
@@ -49,6 +53,15 @@ button {
   letter-spacing: 2.16px;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all ease-out 0.2s;
+}
+
+.restart-button:hover {
+  border-radius: 100px;
+  border: 1px solid rgba(255, 138, 138, 0.73);
+  background: rgba(202, 78, 78, 0.32);
+  box-shadow: 0px 0px 13.8px 0px rgba(255, 138, 138, 0.16);
+  transition: all ease-out 0.2s;
 }
 
 .left-container {
@@ -67,25 +80,17 @@ button {
   font-weight: 300;
   line-height: normal;
   letter-spacing: 0.64px;
-  text-transform: uppercase;
   margin: 0px;
   display: flex;
   align-items: flex-start;
   gap: 8px;
 }
 
-button:hover {
-  border-radius: 100px;
-  border: 1px solid rgba(138, 178, 255, 0.73);
-  background: rgba(78, 113, 202, 0.32);
-  box-shadow: 0px 0px 13.8px 0px rgba(138, 178, 255, 0.16);
-}
-
 .card-grid {
+  width: 60%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
-  max-width: 60%;
 }
 
 .front {

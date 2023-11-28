@@ -1,31 +1,63 @@
 .card {
-    position: relative;
+  position: relative;
 }
 
 .card img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border-radius: 12px;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
 
 .card .front {
-    transform: rotateY(90deg);
-    position: absolute;
-    transition: all ease-in-out 0.2s;
+  transform: rotateY(90deg);
+  position: absolute;
+  transition: all ease-in-out 0.2s;
+}
+
+.card .back:hover {
+  border: 1px solid rgba(138, 178, 255, 0.73);
+  background: rgba(78, 113, 202, 0.32);
+  box-shadow: 0px 0px 13.8px 0px rgba(138, 178, 255, 0.16);
+  transition: all ease-in 0.2s;
+  transition-delay: 0s;
+}
+
+.flipped {
+  height: 100%;
 }
 
 .flipped .front {
-    transform: rotateY(0deg);
-    transition-delay: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.card .not-flipped {
+  aspect-ratio: 1/1;
 }
 
 .card .back {
-    transition: all ease-in-out 0.2s;
-    transition-delay: 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  background: #2d2d2d;
+  box-shadow: 0px 0px 10.9px 3px rgba(255, 255, 255, 0.02);
+  transition: all ease-in-out 0.2s;
+  transition-delay: 0.2s;
 }
 
 .flipped .back {
-    transform: rotateY(90deg);
-    transition-delay: 0s;
+  transform: rotateY(90deg);
+  transition-delay: 0s;
 }
