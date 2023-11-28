@@ -7,11 +7,11 @@
   flex-shrink: 0;
   min-width: 100%;
   min-height: 100%;
-  border-radius: 12px;
-  box-sizing: border-box;
 }
 
 .card .front {
+    border-radius: 12px;
+  box-sizing: border-box;
   transform: rotateY(90deg);
   position: absolute;
   transition: all ease-in-out 0.2s;

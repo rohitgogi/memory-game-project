@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SingleCard from "./components/SingleCard";
 
+let timer = false;
+let minute = 0; 
+let second = 0; 
+
 const cardImages = [
   { src: "/img/image1.png", matched: false },
   { src: "/img/image2.png", matched: false },
@@ -28,6 +32,12 @@ function App() {
     setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
+    timer = false;
+    stopWatch();
+    minute = 0;
+    second = 0;
+    document.getElementById('min').innerHTML = "00"; 
+    document.getElementById('sec').innerHTML = "00"; 
   };
 
   //choice handler
@@ -37,6 +47,10 @@ function App() {
 
   //compare 2 selected cards, handle what happens if they do/don't
   useEffect(() => {
+    if (turns === 0) {
+      timer = true;
+      stopWatch();
+    }
     if (choiceOne && choiceTwo) {
       setDisabled(true);
 
@@ -56,6 +70,30 @@ function App() {
       }
     }
   }, [choiceOne, choiceTwo]);
+
+  function stopWatch() { 
+    if (timer) { 
+        second++;   
+        if (second == 60) { 
+            minute++; 
+            second = 0; 
+        } 
+  
+        let minString = minute; 
+        let secString = second; 
+  
+        if (minute < 10) { 
+            minString = "0" + minString; 
+        } 
+  
+        if (second < 10) { 
+            secString = "0" + secString; 
+        } 
+        document.getElementById('min').innerHTML = minString; 
+        document.getElementById('sec').innerHTML = secString; 
+        setTimeout(stopWatch, 1000); 
+    } 
+}
 
   console.log(cards);
 
@@ -107,27 +145,36 @@ function App() {
                 </clipPath>
               </defs>
             </svg>{" "}
-            Turns: {turns}
+            <div id="time">
+              <span class="digit" id="min">
+                00
+              </span>
+              <span class="txt">:</span>
+              <span class="digit" id="sec">
+                00
+              </span>
+            </div>
           </p>
+          <p className="turns">Turns: {turns}</p>
         </div>
         <button className="restart-button" onClick={shuffleCards}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-            >
-              <path
-                d="M1.875 1.49998V5.99998H6.375M1.995 11.6775C2.60581 13.2736 3.74339 14.6132 5.2194 15.4745C6.69541 16.3359 8.42133 16.6674 10.1114 16.414C11.8015 16.1607 13.3544 15.3377 14.513 14.0815C15.6715 12.8252 16.3663 11.2109 16.4823 9.50586C16.5983 7.80083 16.1285 6.10733 15.1507 4.70573C14.1729 3.30413 12.7458 2.27849 11.1055 1.79863C9.46533 1.31876 7.71042 1.41345 6.13137 2.06701C4.55231 2.72057 3.24381 3.89381 2.4225 5.39248"
-                stroke="#EEEEEE"
-                stroke-width="1.26562"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>{" "}
-            Restart
-          </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+          >
+            <path
+              d="M1.875 1.49998V5.99998H6.375M1.995 11.6775C2.60581 13.2736 3.74339 14.6132 5.2194 15.4745C6.69541 16.3359 8.42133 16.6674 10.1114 16.414C11.8015 16.1607 13.3544 15.3377 14.513 14.0815C15.6715 12.8252 16.3663 11.2109 16.4823 9.50586C16.5983 7.80083 16.1285 6.10733 15.1507 4.70573C14.1729 3.30413 12.7458 2.27849 11.1055 1.79863C9.46533 1.31876 7.71042 1.41345 6.13137 2.06701C4.55231 2.72057 3.24381 3.89381 2.4225 5.39248"
+              stroke="#EEEEEE"
+              stroke-width="1.26562"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>{" "}
+          Restart
+        </button>
       </div>
 
       <div className="card-grid">
