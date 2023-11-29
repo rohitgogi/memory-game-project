@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { Stopwatch } from "stopwatch.js";
 import SingleCard from "./components/SingleCard";
 
 let timer = false;
-let minute = 0; 
-let second = 0; 
+
+const globalStopwatch = new Stopwatch();
 
 const cardImages = [
   { src: "/img/image1.png", matched: false },
@@ -32,12 +33,11 @@ function App() {
     setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
+    globalStopwatch.reset();
+
     timer = false;
-    stopWatch();
-    minute = 0;
-    second = 0;
-    document.getElementById('min').innerHTML = "00"; 
-    document.getElementById('sec').innerHTML = "00"; 
+    document.getElementById("min").innerHTML = "00";
+    document.getElementById("sec").innerHTML = "00";
   };
 
   //choice handler
@@ -47,13 +47,17 @@ function App() {
 
   //compare 2 selected cards, handle what happens if they do/don't
   useEffect(() => {
-    if (turns === 0) {
+    if (!timer) {
       timer = true;
-      stopWatch();
+      globalStopwatch.start((time) => {
+        const min = time.split(":")[1];
+        const sec = time.split(":")[2];
+        document.getElementById("min").innerHTML = min;
+        document.getElementById("sec").innerHTML = sec;
+      }); 
     }
     if (choiceOne && choiceTwo) {
       setDisabled(true);
-
       if (choiceOne.src === choiceTwo.src) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -70,32 +74,6 @@ function App() {
       }
     }
   }, [choiceOne, choiceTwo]);
-
-  function stopWatch() { 
-    if (timer) { 
-        second++;   
-        if (second == 60) { 
-            minute++; 
-            second = 0; 
-        } 
-  
-        let minString = minute; 
-        let secString = second; 
-  
-        if (minute < 10) { 
-            minString = "0" + minString; 
-        } 
-  
-        if (second < 10) { 
-            secString = "0" + secString; 
-        } 
-        document.getElementById('min').innerHTML = minString; 
-        document.getElementById('sec').innerHTML = secString; 
-        setTimeout(stopWatch, 1000); 
-    } 
-}
-
-  console.log(cards);
 
   //reset choices
   const resetTurn = () => {
