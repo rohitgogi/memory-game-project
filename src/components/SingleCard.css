@@ -7,9 +7,11 @@
   object-fit: cover;
   min-width: 100%;
   min-height: 100%;
+  border-box: border-box;
 }
 
 .card .front {
+  border: 1px solid #555;
   border-radius: 12px;
   box-sizing: border-box;
   transform: rotateY(90deg);
