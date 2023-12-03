@@ -20,9 +20,9 @@
 }
 
 .card .back:hover {
-  border: 1px solid rgba(138, 178, 255, 0.73);
-  background: rgba(78, 113, 202, 0.32);
-  box-shadow: 0px 0px 13.8px 0px rgba(138, 178, 255, 0.16);
+  border: 1px solid rgba(255, 229, 138, 0.73);
+  background: rgba(202, 175, 78, 0.32);
+  box-shadow: 0px 0px 13.8px 0px rgba(202, 175, 78, 0.3);
   transition: all ease-in-out 0.2s;
   transition-delay: 0s;
 }

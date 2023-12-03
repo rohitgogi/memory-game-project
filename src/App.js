@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Stopwatch } from "stopwatch.js";
 import SingleCard from "./components/SingleCard";
+import StartScreen from "./components/StartScreen";
 
 let timer = false;
+var min = 0;
+var sec = 0;
 
 const globalStopwatch = new Stopwatch();
 
@@ -22,6 +25,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   //this function doubles the cards and shuffles them
   const shuffleCards = () => {
@@ -50,11 +54,11 @@ function App() {
     if (!timer) {
       timer = true;
       globalStopwatch.start((time) => {
-        const min = time.split(":")[1];
-        const sec = time.split(":")[2];
+        min = time.split(":")[1];
+        sec = time.split(":")[2];
         document.getElementById("min").innerHTML = min;
         document.getElementById("sec").innerHTML = sec;
-      }); 
+      });
     }
     if (choiceOne && choiceTwo) {
       setDisabled(true);
@@ -70,7 +74,7 @@ function App() {
         });
         resetTurn();
       } else {
-        setTimeout(() => resetTurn(), 1000);
+        setTimeout(() => resetTurn(), 850);
       }
     }
   }, [choiceOne, choiceTwo]);
@@ -83,16 +87,20 @@ function App() {
     setDisabled(false);
   };
 
-  //start game automatically
   useEffect(() => {
     shuffleCards();
   }, []);
 
+  const startGame = () => {
+    setGameStarted(true);
+  };
+
   return (
     <div className="App">
+      {!gameStarted && <StartScreen onStartClick={startGame} />}
       <div className="left-container">
         <div className="top-container">
-          <h1 className="title">Alzheimer Prevention Game</h1>
+          <h1 className="title">Yellow Jacket Match-It</h1>
           <p className="turns">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +162,6 @@ function App() {
           Restart
         </button>
       </div>
-
       <div className="card-grid">
         {cards.map((card) => (
           <SingleCard
