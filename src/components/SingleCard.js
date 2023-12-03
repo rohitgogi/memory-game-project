@@ -1,6 +1,6 @@
 import "./SingleCard.css";
 
-export default function SingleCard({ card, handleChoice, flipped, disabled, turns, stopWatch, timer }) {
+export default function SingleCard({ card, handleChoice, flipped, disabled, gameOver, turns, stopWatch, timer }) {
   const handleClick = () => {
     if (!disabled) {
       handleChoice(card);
@@ -19,3 +19,4 @@ export default function SingleCard({ card, handleChoice, flipped, disabled, turn
     </div>
   );
 }
+

@@ -3,6 +3,8 @@ import "./App.css";
 import { Stopwatch } from "stopwatch.js";
 import SingleCard from "./components/SingleCard";
 import StartScreen from "./components/StartScreen";
+import Popup from "./components/Popup";
+import PopupOverlay from "./components/PopupOverlay";
 
 let timer = false;
 var min = 0;
@@ -26,6 +28,7 @@ function App() {
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   //this function doubles the cards and shuffles them
   const shuffleCards = () => {
@@ -77,6 +80,16 @@ function App() {
         setTimeout(() => resetTurn(), 850);
       }
     }
+
+    const allMatched = cards.every((card) => card.matched);
+    
+    if (turns > 0 && allMatched) {
+      //after 1 second, show alert and stop timer
+      setTimeout(() => {
+        setGameOver(true);
+        globalStopwatch.stop();
+      }, 250  );
+    }
   }, [choiceOne, choiceTwo]);
 
   //reset choices
@@ -95,8 +108,20 @@ function App() {
     setGameStarted(true);
   };
 
+
+  const resetGame = () => {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns(0);
+    setDisabled(false);
+    setGameOver(false);
+    globalStopwatch.reset();
+    shuffleCards();
+  };
+
   return (
-    <div className="App">
+    <>
+    <div className={`App ${gameOver ? "blur" : ""}`}>
       {!gameStarted && <StartScreen onStartClick={startGame} />}
       <div className="left-container">
         <div className="top-container">
@@ -170,10 +195,17 @@ function App() {
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
             disabled={disabled}
+            gameOver={gameOver}
           />
         ))}
       </div>
     </div>
+    {gameOver && (
+        <PopupOverlay>
+          <Popup turns={turns} onClose={resetGame} />
+        </PopupOverlay>
+      )}
+    </>
   );
 }
 
