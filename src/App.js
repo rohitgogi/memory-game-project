@@ -202,7 +202,7 @@ function App() {
     </div>
     {gameOver && (
         <PopupOverlay>
-          <Popup turns={turns} onClose={resetGame} />
+          <Popup turns={turns} min={min} sec={sec} onClose={resetGame} />
         </PopupOverlay>
       )}
     </>
