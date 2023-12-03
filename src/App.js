@@ -88,7 +88,7 @@ function App() {
       setTimeout(() => {
         setGameOver(true);
         globalStopwatch.stop();
-      }, 250  );
+      }, 500  );
     }
   }, [choiceOne, choiceTwo]);
 
