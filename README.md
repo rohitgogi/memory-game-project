@@ -1,3 +1,3 @@
 Make sure to run
-`npm i stopwatch.js`
-before running to install stopwatch dependency
+'npm install' and `npm i stopwatch.js`
+before running the gam, to install all the dependencies
