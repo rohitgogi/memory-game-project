@@ -7,8 +7,8 @@ const Popup = ({ turns, min, sec, onClose }) => {
     <div className="popup">
       <h2>Congratulations, <br/> you won!</h2>
       <div className="stats"> 
-        <p>Time Elapsed: {turns}</p>
-        <p>Total Turns: {min}:{sec}</p>
+        <p>Total Turns: {turns}</p>
+        <p>Time Elapsed: {min}:{sec}</p>
       </div>
       <button onClick={onClose}>
       <svg
